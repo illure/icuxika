@@ -1,0 +1,30 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: heart
+  profiles:
+    active: dev
+  # druid start
+  datasource:
+    druid:
+      db-type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      initial-size: 1
+      max-active: 20
+      min-idle: 1
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      validation-query: select 'x'
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      filters: stat
+# mybatis
+mybatis:
+  mapper-locations: classpath:top/aprillie/**/*.xml
+  type-aliases-package: classpath:top.aprillie.**.entity
+# log
+logging:
+  config: classpath:logback.xml
