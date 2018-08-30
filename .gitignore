@@ -1,0 +1,6 @@
+.idea
+# meteor
+/meteor/dist
+node_modules
+# heart
+*.iml
