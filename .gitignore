@@ -1,6 +1,7 @@
 .idea
 # meteor
 /meteor/dist
-node_modules
+/meteor/node_modules
 # heart
+/heart/target
 *.iml
