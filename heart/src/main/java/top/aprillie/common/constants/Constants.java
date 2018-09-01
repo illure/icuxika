@@ -60,7 +60,7 @@ public class Constants {
     /**
      * Mail
      */
-    public static final String MAIL_FROM = "allure_love921@qq.com";
+    public static final String MAIL_FROM = "illure_work@foxmail.com";
 
     public static final String MAIL_SUBJECT = "验证码";
 

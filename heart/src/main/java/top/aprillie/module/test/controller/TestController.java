@@ -1,6 +1,7 @@
 package top.aprillie.module.test.controller;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import top.aprillie.jms.utils.MailUtils;
+import top.aprillie.jms.utils.SmsUtils;
 import top.aprillie.module.test.entity.Test;
 import top.aprillie.module.test.entity.TestList;
 
@@ -28,6 +31,12 @@ import java.util.List;
 @RestController
 @RequestMapping("test")
 public class TestController {
+
+    @Autowired
+    private SmsUtils smsUtils;
+
+    @Autowired
+    private MailUtils mailUtils;
 
     @RequestMapping("/test")
     public List<TestList> test(@RequestBody Test test) {
@@ -78,5 +87,11 @@ public class TestController {
         headers.setContentDispositionFormData("attachment", path);
         headers.setContentType(MediaType.IMAGE_PNG);
         return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file), headers, HttpStatus.CREATED);
+    }
+
+    @RequestMapping("/jmsTest")
+    public void jmsTest() {
+//        smsUtils.sendVerificationSms("18752065699", "4321");
+        mailUtils.sendVerificationMail("549232512@qq.com", "illure", "4321");
     }
 }
