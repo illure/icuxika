@@ -33,6 +33,6 @@ public class MailProcessor {
     @JmsListener(destination = "mail.queue")
     public void doSendMail(String mail) {
         JSONObject jsonObject = JSONObject.parseObject(mail);
-        mailSender.sendMail(jsonObject.getString("subject"), jsonObject.getString("from"), jsonObject.getString("to"), jsonObject.getString("params"));
+        mailSender.sendMail(jsonObject.getString("to"), jsonObject.getString("params"));
     }
 }

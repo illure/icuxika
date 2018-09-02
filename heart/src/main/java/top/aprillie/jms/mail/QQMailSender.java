@@ -4,11 +4,13 @@ import com.alibaba.fastjson.JSONObject;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
+import top.aprillie.common.constants.Constants;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -22,6 +24,7 @@ import java.util.Map;
  * @Date: Created in 2018/9/1 22:46
  * @Modified By:
  */
+@Slf4j
 @Service("qqMailService")
 public class QQMailSender implements MailSender {
 
@@ -29,13 +32,13 @@ public class QQMailSender implements MailSender {
     JavaMailSender javaMailSender;
 
     @Override
-    public void sendMail(String subject, String from, String to, String params) {
+    public void sendMail(String to, String params) {
         MimeMessage message = null;
         try {
             message = javaMailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setSubject(subject);
-            helper.setFrom(from);
+            helper.setSubject(Constants.MAIL_SUBJECT);
+            helper.setFrom(Constants.MAIL_FROM);
             helper.setTo(to);
 
             JSONObject jsonObject = JSONObject.parseObject(params);
@@ -49,8 +52,8 @@ public class QQMailSender implements MailSender {
             String html = FreeMarkerTemplateUtils.processTemplateIntoString(template, paramsMap);
 
             helper.setText(html, true);
-        } catch (MessagingException | TemplateException | IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            log.error("Fail to send mail", e);
         }
         javaMailSender.send(message);
     }

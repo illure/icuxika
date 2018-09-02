@@ -72,7 +72,11 @@ public class Constants {
 
     public static final String MDSMS_AUTH_TOKEN = "681b76ba8a3249748747f14264969292";
 
-    public static final String MDSMS_REST_URL = "https://api.miaodiyun.com/20150822";
+    public static final String MDSMS_BASE_URL = "https://api.miaodiyun.com/20150822";
+
+    public static final String MDSMS_INDUSTRY_OPERATION = "/industrySMS/sendSMS";
 
     public static final String MDSMS_VERIFICATION_CODE_TPLID = "209513871";
+
+    public static final String MDSMS_RESP_CODE_OK = "00000";
 }

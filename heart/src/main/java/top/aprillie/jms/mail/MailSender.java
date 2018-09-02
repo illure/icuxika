@@ -8,5 +8,5 @@ package top.aprillie.jms.mail;
  */
 public interface MailSender {
 
-    void sendMail(String subject, String from, String to, String params);
+    void sendMail(String to, String params);
 }

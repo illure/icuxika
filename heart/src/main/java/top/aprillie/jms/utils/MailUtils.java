@@ -32,8 +32,6 @@ public class MailUtils {
         String params = JSON.toJSONString(paramsMap);
 
         Map<String, String> mailParams = new HashMap<>();
-        mailParams.put("subject", Constants.MAIL_SUBJECT);
-        mailParams.put("from", Constants.MAIL_FROM);
         mailParams.put("to", to);
         mailParams.put("params", params);
         String mail = JSON.toJSONString(mailParams);

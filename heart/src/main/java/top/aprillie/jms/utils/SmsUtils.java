@@ -23,11 +23,10 @@ public class SmsUtils {
     @Autowired
     private SmsProcessor smsProcessor;
 
-    public void sendVerificationSms(String phone, String verificationCode) {
+    public void sendVerificationSms(String to, String verificationCode) {
         Destination destination = new ActiveMQQueue("sms.queue");
         Map<String, String> paramsMap = new HashMap<>();
-        paramsMap.put("phone", phone);
-        paramsMap.put("tplId", Constants.MDSMS_VERIFICATION_CODE_TPLID);
+        paramsMap.put("to", to);
         paramsMap.put("verificationCode", verificationCode);
         String message = JSON.toJSONString(paramsMap);
         smsProcessor.sendSmsToQueue(destination, message);

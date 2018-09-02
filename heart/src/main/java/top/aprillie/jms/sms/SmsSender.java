@@ -8,5 +8,5 @@ package top.aprillie.jms.sms;
  */
 public interface SmsSender {
 
-    void sendSms(String phone, String tplId, String params);
+    void sendSms(String to, String params);
 }

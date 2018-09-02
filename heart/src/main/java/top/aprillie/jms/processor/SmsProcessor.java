@@ -34,6 +34,6 @@ public class SmsProcessor {
     @JmsListener(destination = "sms.queue")
     public void  doSendSmsMessage(String note) {
         JSONObject jsonObject = JSON.parseObject(note);
-        smsSender.sendSms(jsonObject.getString("phone"), jsonObject.getString("tplId"), jsonObject.getString("verificationCode"));
+        smsSender.sendSms(jsonObject.getString("to"), jsonObject.getString("verificationCode"));
     }
 }

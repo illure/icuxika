@@ -48,7 +48,7 @@ public class HttpUtil {
                 responseText = EntityUtils.toString(entity);
             }
         } catch (Exception e) {
-            log.error("http request failed", e);
+            log.error("Http request failed", e);
         } finally {
             try {
                 response.close();
@@ -77,7 +77,7 @@ public class HttpUtil {
                 responseText = EntityUtils.toString(entity);
             }
         } catch (Exception e) {
-            log.error("http request failed", e);
+            log.error("Http request failed", e);
         } finally {
             try {
                 response.close();
