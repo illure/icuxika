@@ -48,6 +48,23 @@ public class Constants {
 
     public static final int RESPONSE_STATUS_INTERNAL_ERROR = 500;
 
+    /**
+     * accout 1 phone 2 email
+     */
+    public static final Byte IDENTIFIER_TYPE_PHONE = 1;
+
+    public static final Byte IDENTIFIER_TYPE_EMAIL = 2;
+
+
+    /**
+     *  token
+     */
+    public static final String REQUEST_TOKEN_HEADER = "x-auth-token";
+
+    /**
+     *  session
+     */
+    public static final String REQUEST_USER_SESSION = "current-user";
 
     /**
      * Third Part Login

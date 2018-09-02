@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.aprillie.module.user.dao.UserAuthMapper">
+  <resultMap id="BaseResultMap" type="top.aprillie.module.user.entity.UserAuth">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="identity_type" jdbcType="TINYINT" property="identityType" />
+    <result column="activation" jdbcType="BIT" property="activation" />
+    <result column="verification" jdbcType="BIT" property="verification" />
+    <result column="identifier" jdbcType="VARCHAR" property="identifier" />
+    <result column="credential" jdbcType="VARCHAR" property="credential" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, identity_type, activation, verification, identifier, credential, gmt_create, 
+    gmt_modified
+  </sql>
+  <select id="selectByIdentifier" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_auth
+    where identifier = #{identifier,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_auth
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_auth
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="top.aprillie.module.user.entity.UserAuth">
+    insert into user_auth (id, user_id, identity_type, 
+      activation, verification, identifier, 
+      credential, gmt_create, gmt_modified
+      )
+    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{identityType,jdbcType=TINYINT}, 
+      #{activation,jdbcType=BIT}, #{verification,jdbcType=BIT}, #{identifier,jdbcType=VARCHAR}, 
+      #{credential,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="top.aprillie.module.user.entity.UserAuth">
+    insert into user_auth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="identityType != null">
+        identity_type,
+      </if>
+      <if test="activation != null">
+        activation,
+      </if>
+      <if test="verification != null">
+        verification,
+      </if>
+      <if test="identifier != null">
+        identifier,
+      </if>
+      <if test="credential != null">
+        credential,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="identityType != null">
+        #{identityType,jdbcType=TINYINT},
+      </if>
+      <if test="activation != null">
+        #{activation,jdbcType=BIT},
+      </if>
+      <if test="verification != null">
+        #{verification,jdbcType=BIT},
+      </if>
+      <if test="identifier != null">
+        #{identifier,jdbcType=VARCHAR},
+      </if>
+      <if test="credential != null">
+        #{credential,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="top.aprillie.module.user.entity.UserAuth">
+    update user_auth
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="identityType != null">
+        identity_type = #{identityType,jdbcType=TINYINT},
+      </if>
+      <if test="activation != null">
+        activation = #{activation,jdbcType=BIT},
+      </if>
+      <if test="verification != null">
+        verification = #{verification,jdbcType=BIT},
+      </if>
+      <if test="identifier != null">
+        identifier = #{identifier,jdbcType=VARCHAR},
+      </if>
+      <if test="credential != null">
+        credential = #{credential,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="top.aprillie.module.user.entity.UserAuth">
+    update user_auth
+    set user_id = #{userId,jdbcType=BIGINT},
+      identity_type = #{identityType,jdbcType=TINYINT},
+      activation = #{activation,jdbcType=BIT},
+      verification = #{verification,jdbcType=BIT},
+      identifier = #{identifier,jdbcType=VARCHAR},
+      credential = #{credential,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
